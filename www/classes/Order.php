@@ -7,7 +7,7 @@
 		
 		private $items; //?
 		
-		protected function __construct($id,$status,$user_id,$date) {
+		public function __construct($id,$status,$user_id,$date) {
 			$this->id = $id;
 			$this->status=$status;
 			$this->user_id = $user_id;

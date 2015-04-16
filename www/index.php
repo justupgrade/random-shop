@@ -1,6 +1,6 @@
 <?php
 	echo "shop: index.php <br>";
-	//header('Location: ./sites/home.php');
+	header('Location: ./sites/home.php');
 	
 	require_once 'connection.php';
 	

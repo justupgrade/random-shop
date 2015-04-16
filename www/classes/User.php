@@ -18,13 +18,35 @@
 		}
 		
 		//----------- methods -----------------
-		public function authenticate($password) {
-		
+		static public function Authenticate($email,$password) {
+			$query = "SELECT * FROM users WHERE email='".$email."'";
+			
+			if(($hashed = self::$connection->query($query)))  {
+				$data = $hashed->fetch_assoc();
+				if(password_verify($password, $data['password'])) {
+					return self::CreateFromArray($data);
+				}
+			}
+			
+			return null;
 		}
 		
+		//MOVE TO ORDERS ???
 		public function getAllOrders() {
 			//get all orders for this user
+			$query = "SELECT * FROM orders WHERE user_id=".$this->id . " ORDER BY status";
 			
+			$result = self::$connection->query($query);
+			if($result && $result->num_rows > 0) {
+				$orders = array();
+				while($row = $result->fetch_assoc()){
+					$orders[] = new Order($row['id'], $row['status'], $row['user_id'], $row['date']);
+				}
+				
+				return $orders;
+			}
+			
+			return null;
 		}
 		
 		public function sendMail() {
@@ -38,7 +60,7 @@
 			$values = array($email, $username, '', self::getHashedPassword($password), '', '', '');
 				
 			if(($id = parent::Create($table, $columns, $values)) !== null) {
-				return new User($id,$username,$email,$password);
+				return new User($id,$username,$email);
 			}
 				
 			return null;
@@ -96,7 +118,7 @@
 			return null;
 		}
 		
-		// -----------------------
+		// ----------------------- GET / SET
 		public function getName() {
 			return $this->name;
 		}

@@ -2,7 +2,7 @@
 <dataset>
 	<categories id='1' name='category1' parent_id='null' />
 	
-	<users id='1' name='username1' password='hash!!!' email='' surname='' street='' postal_code='' city=''/>
+	<users id='1' name='username1' password='$2y$05$/Rj2sYSAB/eppobSJLhIvOjHA2uws9Xl4OkNC0K.bS4/eugk6pJti' email='test@test.com' surname='' street='' postal_code='' city=''/>
 	
 	<items id='1' name='item_1_name' price='2.45' description='item 1 description' amount='1' category_id='1' />
 	<items id='2' name='item_2_name' price='12.45' description='item 2 description' amount='1' category_id='1' />

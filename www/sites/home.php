@@ -35,7 +35,7 @@
 		</div>
 	</div>
 	<footer id='footer' class='default-style'>
-		<div id='left-footer'>post-o-quot</div>
+		<div id='left-footer'>random-shop.com</div>
 		<div id='right-footer'>created by justupgrade</div>
 	</footer>
 </body>

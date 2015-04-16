@@ -1,6 +1,7 @@
 <?php
 	require_once "./classes/DBObject.php";
 	require_once "./classes/User.php";
+	require_once "./classes/Order.php";
 	
 	class UserTest extends PHPUnit_Extensions_Database_TestCase {
 		
@@ -17,6 +18,20 @@
 			DBObject::SetUpConnection(
 				new mysqli($GLOBALS['DB_HOST'],$GLOBALS['DB_USER'],$GLOBALS['DB_PASSWD'],$GLOBALS['DB_NAME'])
 			);
+		}
+		
+		//------------------ TEST ---------------------
+		
+		public function test7() {
+			$user = User::Authenticate("test@test.com", "test");
+			$this->assertCount(1,$user->getAllOrders());
+		}
+		
+		public function test6() {
+			//test authenictace
+			$new = User::Create("username", "username@email.com", "test");
+			$this->assertNull(User::Authenticate("username@email.com", "wrong_password"));
+			$this->assertEquals($new, User::Authenticate("username@email.com", "test"));
 		}
 		
 		public function test5() {
