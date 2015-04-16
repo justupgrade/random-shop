@@ -1,4 +1,5 @@
 vendor/
+uploads/
 .htaccessh
 composer.lock
 composer.phar

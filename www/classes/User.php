@@ -78,7 +78,7 @@
 		static public function Load($id) {
 			$data = parent::Load($id,'users');
 			
-			if($data=$data->fetch_assoc()) {
+			if(($data=$data->fetch_assoc())) {
 				return self::CreateFromArray($data);
 			}
 			

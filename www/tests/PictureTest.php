@@ -1,9 +1,11 @@
 <?php
 	require_once "./classes/DBObject.php";
-	require_once "./classes/Category.php";
+	require_once "./classes/Picture.php";
 	require_once "./classes/Item.php";
+	 
 	
-	class ItemTest extends PHPUnit_Extensions_Database_TestCase {
+	
+	class PictureTest extends PHPUnit_Extensions_Database_TestCase {
 		
 		public function getConnection(){
 			$conn = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
@@ -20,24 +22,23 @@
 			);
 		}
 		
+		// =============================== TESTS =====================================
+		
 		public function test2() {
-			//delete item-> not possible? -> breaks orders
-			//try to delete item
-			$deletion = null;
-			$error = null;
-			try {
-				$deletion = Item::Delete(1);
-			} catch (Error $err){
-				$error = true;
-			}
-			
-			$this->assertNull($deletion);
-			$this->assertTrue($error);
+			//edit? download binary? save to another location? 
 		}
 		
 		public function test1() {
-			$item = Item::Create("new item", 2.33, "item description", 1, 1);
-			$this->assertNotNull($item);
+			//upload? -> leave for selenium
+			//create? -> protected
+			//load:
+			$path = './uploads/1/2015/04/16/67af/sword.png';
+			$pictures = Picture::Load(1);
+			$this->assertCount(1,$pictures);
+		}
+		
+		public function test0() {
+			//clear db
 		}
 	}
 ?>

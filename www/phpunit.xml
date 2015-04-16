@@ -12,5 +12,11 @@
 			<directory>./tests</directory>
 			<exclude></exclude>
 		</testsuite>
+		<testsuite name="item">
+			<file>./tests/ItemTest.php</file>
+		</testsuite>
+		<testsuite name="picture">
+			<file>./tests/PictureTest.php</file>
+		</testsuite>
 	</testsuites>
 </phpunit>
