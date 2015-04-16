@@ -19,8 +19,39 @@
 			);
 		}
 		
-		public function test2() {
+		public function test5() {
+			//get all users...
+			$new = User::Create("new", "new email", "aaa");
+			$this->assertNotNull($new);
+			$this->assertEquals(2,$new->getID());
+			$this->assertCount(2,User::GetAllUsers());
+		}
+		
+		public function test4() {
+			$user = User::Load(1);
+			$user->setEmail("newEmail@test.com");
+			$user->setCity("new city");
+			$user->setPostal("80-100");
+			$user->setSurname("Surname New");
 			
+			$this->assertEquals('newEmail@test.com', $user->getEmail());
+			$this->assertEquals('new city', $user->getCity());
+			$this->assertEquals('80-100', $user->getPostal());
+			$this->assertEquals('Surname New', $user->getSurname());
+			
+			User::Update($user);
+			
+			$loadedUser = User::Load($user->getID());
+			$this->assertEquals($user, $loadedUser);
+		}
+		
+		public function test3() {
+			$this->assertEquals(1, User::Delete(1));
+		}
+		
+		public function test2() {
+			$user = User::Load(1);
+			$this->assertNotNull($user);
 		}
 		
 		public function test1() {
