@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+@CHARSET "UTF-8";
+
+.default-style {
+	background: #333333;
+	color: #DB9B3A;
+}
+
+.orange-white-style {
+	background: #D95C1F;
+	color: #FFFFFF;
+}
+
+#page-title-cont {
+	padding: 5px;
+	text-align: center;
+	font-size: 2em;
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+
+nav {
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+
+nav div.nav-style {
+	float:left;
+	width: 20%;
+	text-align: center;
+	display: block;
+	padding: 5px 0px;
+	border-left: 5px solid white;
+	border-right: 5px solid white;
+	-moz-box-sizing: border-box;
+	cursor: pointer;
+}
+
+nav div.nav-style:hover {
+	background: black;
+	color: white;
+}
+
+nav div.nav-style:active {
+	background: white;
+	color: black;
+}
+
+#cont3 {
+	clear:left;
+	float:left;
+	width:100%;
+	overflow:hidden;
+	background:#89ffa2; /* column 3 background colour */
+	margin-bottom: 5px;
+}
+
+#cont2 {
+	clear:left;
+	float:left;
+	width:100%;
+	position:relative;
+	/*right:33.333%;*/
+	right: 15%;
+	background:#ffa7a7; /* column 2 background colour */
+}
+
+#cont1 {
+	float:left;
+	width:100%;
+	width: 80%;
+	position:relative;
+	right:33.33%;
+	right:40%;
+	background:#fff689; /* column 1 background colour */
+}
+#col1 {
+	float:left;
+	width:29.33%;
+	width: 20%;
+	position:relative;
+	left:68.67%;
+	left: 70%;
+	overflow:hidden;
+}
+#col2 {
+	float:left;
+	width:29.33%;
+	width:65%;
+	position:relative;
+	left:72.67%;
+	left:80%;
+	overflow:hidden;
+}
+#col3 {
+	float:left;
+	width:29.33%;
+	width:15%;
+	position:relative;
+	left:76.67%;
+	left:90%;
+	overflow:hidden;
+}
+
+/*
+	footer
+*/
+
+#footer {
+	border: 1px solid gray;
+	overflow: hidden;
+}
+
+#footer #left-footer {
+	float: left;
+	padding: 5px 0px;
+	padding-left: 10px;
+}
+
+#footer #right-footer {
+	float: right;
+	padding: 5px 0px;
+	padding-right: 10px;
+}

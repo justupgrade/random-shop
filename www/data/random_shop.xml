@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<categories id='1' name='category1' parent_id='null' />
+	
+	<users id='1' name='username1' password='hash!!!' email='' surname='' street='' postal_code='' city=''/>
+	
+	<items id='1' name='item_1_name' price='2.45' description='item 1 description' amount='1' category_id='1' />
+	<items id='2' name='item_2_name' price='12.45' description='item 2 description' amount='1' category_id='1' />
+	<items id='3' name='item_3_name' price='22.45' description='item 3 description' amount='1' category_id='1' />
+	<items id='4' name='item_4_name' price='2.05' description='item 4 description' amount='1' category_id='1' />
+	<items id='5' name='item_5_name' price='14' description='item 5 description' amount='1' category_id='1' />
+	
+	<orders id='1' status='1' user_id='1' date='' />
+	
+	<orders_items id='1' order_id='1' item_id='1' amount='1' />
+	<orders_items id='2' order_id='1' item_id='2' amount='1' />
+	<orders_items id='3' order_id='1' item_id='3' amount='1' />
+	<orders_items id='4' order_id='1' item_id='4' amount='1' />
+	<orders_items id='5' order_id='1' item_id='5' amount='1' />
+	
+</dataset>
