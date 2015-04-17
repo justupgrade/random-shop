@@ -3,7 +3,7 @@
 		private $id;
 		private $name;
 		private $price;
-		private $descirpiotn;
+		private $description;
 		private $amount;
 		private $categoryID;
 		
@@ -14,12 +14,70 @@
 			$this->name=$name;
 			$this->price=$price;
 			$this->description=$description;
-			$this->amount = $amount;
+			$this->amount = 1; //DEFAULT AMOUNT 1	
 			$this->categoryID = $categoryID;
 		}
 		
 		static public function CreateFromArray($data){
 			return new Item($data['id'],$data['name'], $data['price'], $data['description'], $data['amount'], $data['category_id']);
+		}
+		
+		//-------------------- DISPLAY ------------------
+		
+		public function cartHtml() {
+			//name -> amount -> price
+			$out = $this->name . ": (" . $this->amount . "x " . $this->price . " PLN)";
+			$out .= "<input type='submit' class='input-button-inline' style='width:30px' name='AddMoreItemsSubmit' value='+'>";
+			$out .= "<input type='submit' class='input-button-inline' style='width:30px' name='DecreaseItem' value='-'>";
+			$out .= "<input type='submit' class='input-button-inline delete' style='width:30px' name='RemoveItem' value='X'><br>";
+			$out .= "<input type='hidden' name='in_cart_item_id' value='" . $this->id . "'>";
+			
+			return $out;
+		}
+		
+		public function getAdminDetails() {
+			$out = "<div>";
+			$out .= "Name: <input type='text' name='new_name' value='"  . $this->name . "'><br>";
+			$out .= "Description: <input type='text' name='new_description' value='" . $this->description . "'><br>";
+			$out .= "Price: <input type='text' name='new_price' value='" . $this->price . "'><br>";
+			$out .= "</div>";
+			
+			return $out;
+		}
+		
+		public function getAdminOptions() {
+			//delete , update
+			$out = "<div>";
+			$out .= "<input type='hidden' name='updating_item_id' value='".$this->id."'>";
+			$out .= "<input type='submit' class='input-button' style='width:200px' name='SubmitUpdateItem' value='Update'>";
+			$out .= "</div>";
+			
+			return $out;
+		}
+		
+		public function addButtonHtml() {
+			$out = "<input type='submit' class='input-button' style='width: 200px' value='Add to Cart'>";
+			$out .= "<input type='hidden' name='selected_item_id' value='" . $this->id . "'>";
+			return $out;
+		}
+		
+		public function toInputHtml() {
+			$class = 'item-input';
+			
+			$out = "<input type='submit' class='".$class."'  value='".$this->name."' name='SubmitInputItem'>";
+			$out .= "<input type='hidden' name='item_id' value='".$this->id."'>";
+				
+			return $out;
+		}
+		
+		public function detailsToHtml() {
+			$out = "<div>";
+			$out .= "Name: "  . $this->name . '<br>';
+			$out .= "Description: " . $this->description . '<br>';
+			$out .= "Price: " . $this->price . '<br>';
+			$out .= "</div>";
+			
+			return $out;
 		}
 		
 		//----------- methods -----------------
@@ -61,7 +119,7 @@
 		// ---------------- get / set ----------------------
 		public function getCategoryID() { return $this->categoryID; }
 		public function getID() { return $this->id; }
-		public function getPrice() { return $this->price; }
+		public function getPrice() { return $this->amount * $this->price; }
 		public function getDescription() { return $this->description; }
 		public function getName() { return $this->name; }
 		public function getAmount() { return $this->amount; }
@@ -70,6 +128,14 @@
 		public function setName($new) { $this->name = $new; }
 		public function setAmount($new) { $this->amount = $new; }
 		public function setDescription($new) { $this->description = $new; }
+		
+		public function add() {
+			$this->amount++;
+		}
+		
+		public function remove() {
+			$this->amount--;
+		}
 		
 		
 	}

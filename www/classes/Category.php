@@ -6,6 +6,7 @@
 		private $parentID;
 		
 		static protected $table = 'categories';
+		static private $selectedID = -1;
 		
 		protected function __construct($id,$name,$parentID) {
 			$this->id = $id;
@@ -15,6 +16,24 @@
 		
 		static protected function CreateFromArray($data) {
 			return new Category($data['id'], $data['name'], $data['parent_id']);
+		}
+		
+		//-------------------- DISPLAY ------------------
+		public function toDivHtml() {
+			$out = "<div>";
+			$out .= $this->name;
+			$out .= "</div>";
+			
+			return $out;
+		}
+		
+		public function toInputHtml() {
+			$class = 'category-input';
+			if($this->id === self::$selectedID) $class = 'category-input selected-category';
+			$out = "<input type='submit' class='".$class."' value='".$this->name."' name='SubmitChangeCategory'>";
+			$out .= "<input type='hidden' name='category_id' value='".$this->id."'>";
+			
+			return $out;
 		}
 		
 		//----------- methods -----------------
@@ -87,6 +106,9 @@
 		
 		//------------------- OTEHR STATIC -------------------
 		
+		static public function SetCurrentCategory($id=-1) {
+			self::$selectedID = $id;
+		}
 		
 		//--------------------- get / set -----------------
 		public function getID() {

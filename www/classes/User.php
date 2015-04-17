@@ -39,6 +39,12 @@
 			return null;
 		}
 		
+		public function changePassword($newPass){
+			$query = "UPDATE users SET password='" . self::getHashedPassword($newPass) . "' WHERE id=" . $this->id;
+			
+			return self::$connection->query($query);
+		}
+		
 		//MOVE TO ORDERS ???
 		public function getAllOrders() {
 			//get all orders for this user
@@ -94,6 +100,14 @@
 
 		//------------------- OTEHR STATIC -------------------
 		
+		static public function isUnique($login,$column) {
+			$query = "SELECT * FROM users WHERE ".$column."='" . $login ."'";
+			$result = self::$connection->query($query);
+
+			if($result && $result->num_rows == 0) return true;
+
+			return false;
+		}
 		
 		// ----------------------- GET / SET
 		public function getName() {

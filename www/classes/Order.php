@@ -79,18 +79,24 @@
 		}
 		
 		static public function Update($order) {
+			$columns = array('status');
+			$values = array($order->getStatus());
 				
+			return parent::Update($columns,$values, $order->getID());
 		}
-		
-		static public function Delete($id) {
-				
-		}
+	
 		
 		
 		//------------------- OTEHR STATIC -------------------
 		static public function GetAllOrdersByStatus($status) {
 		
 		}
+		
+		public function getID() { return $this->id; }
+		public function getStatus() { return $this->status; }
+		public function getDate() { return $this->date; }
+		public function setStatus($new) { return $this->status = $new; }
+		
 		
 	}
 ?>

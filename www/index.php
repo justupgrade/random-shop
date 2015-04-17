@@ -1,6 +1,6 @@
 <?php
 	echo "shop: index.php <br>";
-	//header('Location: ./sites/home.php');
+	header('Location: ./sites/home.php');
 
 	function __autoload($name) {
 		include_once './classes/' . $name. '.php';

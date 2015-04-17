@@ -75,6 +75,7 @@ nav div.nav-style:active {
 	background:#fff689; /* column 1 background colour */
 }
 #col1 {
+	padding-top: 10px;
 	float:left;
 	width:29.33%;
 	width: 20%;
@@ -84,6 +85,7 @@ nav div.nav-style:active {
 	overflow:hidden;
 }
 #col2 {
+	padding-top: 10px;
 	float:left;
 	width:29.33%;
 	width:65%;
@@ -93,6 +95,7 @@ nav div.nav-style:active {
 	overflow:hidden;
 }
 #col3 {
+	padding-top: 10px;
 	float:left;
 	width:29.33%;
 	width:15%;
@@ -102,6 +105,79 @@ nav div.nav-style:active {
 	overflow:hidden;
 }
 
+/*
+SUBMIT BUTTONS
+*/
+
+.item-input {
+	display: block;
+	padding: 5px;
+	border: none;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	width: 30%;
+	height: 100px;
+	float: left;
+}
+
+.input-button {
+	display: block;
+	width: 100%;
+	padding: 5px;
+	border: none;
+	margin-left: 5px;
+	margin-bottom: 5px; 
+}
+
+.input-button-inline {
+	width: 100%;
+	padding: 5px;
+	border: none;
+	margin-left: 5px;
+	margin-bottom: 5px; 
+}
+
+.delete {
+	background: red;
+}
+
+.category-input:hover {
+	color: white;
+	background: black;
+}
+
+.category-input:active {
+	color: black;
+	background: white;
+}
+
+/*
+CATEGORY LIST
+*/
+
+.category-input {
+	display: block;
+	width: 100%;
+	padding: 5px;
+	border: none;
+	margin-left: 5px;
+	margin-bottom: 5px; 
+}
+
+.category-input:hover {
+	color: white;
+	background: black;
+}
+
+.category-input:active {
+	color: black;
+	background: white;
+}
+
+.selected-category {
+	background: #3AB3DB;
+	color: #155CC6;
+}
 /*
 	footer
 */

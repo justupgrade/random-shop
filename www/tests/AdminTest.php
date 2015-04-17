@@ -22,31 +22,15 @@
 		
 		//------------------ TEST ---------------------
 		
-		/*public function test7() {
-			
-		}
 		
-		public function test6() {
-			//test authenictace
-			
-		}
-		
-		public function test5() {
-			//get all users...
-			
-		}
-		
-		public function test4() {
-			
-		}
-		
-		public function test3() {
-			
-		}
-		
+		//TEST UPDATE 
 		public function test2() {
-			
-		}*/
+			$admin = Admin::Load(1);
+			$admin->changePassword("abcd");
+			$loaded = Admin::Load($admin->getID());
+			$this->assertEquals($loaded, Admin::Authenticate($loaded->getEmail(), "abcd"));
+		}
+		
 		
 		public function test1() {
 			//test update

@@ -28,6 +28,12 @@
 			return null;
 		}
 		
+		public function changePassword($newPass){
+			$query = "UPDATE admins SET pass='" . self::getHashedPassword($newPass) . "' WHERE id=" . $this->id;
+				
+			return self::$connection->query($query);
+		}
+		
 		static private function getHashedPassword($password) {
 			$options = array(
 					'cost' => 5,

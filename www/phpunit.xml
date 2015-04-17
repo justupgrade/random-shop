@@ -13,7 +13,10 @@
 			<exclude></exclude>
 		</testsuite>
 		<testsuite name="current">
-			<file>./tests/CategoryTest.php</file>
+			<file>./tests/CartTest.php</file>
+		</testsuite>
+			<testsuite name="admin_test">
+			<file>./tests/AdminTest.php</file>
 		</testsuite>
 		
 		<testsuite name="user_test">

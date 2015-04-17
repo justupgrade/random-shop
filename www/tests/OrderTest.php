@@ -21,7 +21,10 @@
 		}
 		
 		public function test2() {
-			
+			$order = Order::Load(1);
+			$order->setStatus(2);
+			Order::Update($order);
+			$this->assertEquals($order, Order::Load(1));
 		}
 		
 		public function test1() {
