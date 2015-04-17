@@ -11,10 +11,6 @@
 	$admin = null;
 	$user = null;
 	$cart = null;
-	$selectedCategory = null;
-	$selectedItem = null;
-	$showCart = null;
-	$showConfirm = null;
 	
 	if(isset($_SESSION['admin'])) {
 		$admin = $_SESSION['admin'];
@@ -29,39 +25,12 @@
 			$_SESSION['cart'] = $cart;
 		}
 	}
+?>	
 	
-	if(isset($_SESSION['category_id'])) $selectedCategory = $_SESSION['category_id'];
-	
-	if($_SERVER['REQUEST_METHOD'] === "POST") {
-		if(isset($_POST['ShowLoginForm'])) $showLoginForm = true;
-		elseif(isset($_POST['SubmitLogoutBtn'])) {
-			$admin = null;
-			$user = null;
-			$cart = null; //save to cookie?
-			session_destroy();
-		}
-		elseif(isset($_POST['SubmitChangeCategory'])) {
-			$selectedCategory = $_POST['category_id'];
-			$_SESSION['category_id'] = $selectedCategory;
-		}
-		elseif(isset($_POST['SubmitCreateAccountBtn'])) {
-			$showCreateAccountForm = true;
-		}elseif(isset($_POST['SubmitInputItem'])) {
-			$selectedItem = $_POST['item_id'];
-		}elseif(isset($_POST['ConfirmOrder']) && $user && !$admin) {
-			$showConfirm = true;
-		}
-	} elseif($_SERVER['REQUEST_METHOD'] === 'GET'){
-		if(isset($_GET['cart']) && $_GET['cart'] && $user && !$admin){
-			$showCart = true;
-		}
-	}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+	<title>Account</title>
 	<style>@import url('../styles/home.css');</style>
 </head>
 <body>
@@ -83,24 +52,13 @@
 		<div id='cont2'>
 			<div id='cont1'>
 				<div id='col1'>
-				<!-- LIST OF CATEGORIES -->
-<?php include_once './includes/category_list.php'; ?>
+				<!-- LIST OF SOMETHING -->
+					list
 				</div>
 				
 				<div id='col2'>
 				<div> Main Page </div>
-<?php 
-	if(isset($showConfirm) && $showConfirm) include_once './includes/confirm.php';
-	else if(isset($showCart) && $showCart) include_once './includes/cart.php';
-	else if(isset($showLoginForm) && $showLoginForm) include_once './includes/loginform.php';
-	else if(isset($showCreateAccountForm) && $showCreateAccountForm) include_once './includes/create_account_form.php';
-	
-	//show products of currently selected category:
-	else if(isset($selectedItem) && $selectedItem) include_once './includes/product_details.php';
-	else if(isset($selectedCategory) && $selectedCategory) include_once './includes/list_of_products.php';
-	
-?>
-				</div>
+			</div>
 				<div id='col3'>	
 					<div>
 <?php 
