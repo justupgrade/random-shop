@@ -1,30 +1,68 @@
 <?php
 	class Admin extends DBObject {
-		private $id;
-		private $email;
+		protected $id;
+		protected $email;
 		
+		static protected $table = 'admins';
+		
+		protected function __construct($id,$email) {
+			$this->id = $id;
+			$this->email = $email;
+		}
+		
+		static protected function CreateFromArray($data) {
+			return new Admin($data['id'], $data['email']);
+		}
 		
 		//----------- methods -----------------
-		public function authenticate() {
-		
+		static public function Authenticate($email,$password) {
+			$query = "SELECT * FROM " . self::$table . " WHERE email='".$email."'";
+			
+			if(($hashed = self::$connection->query($query)))  {
+				$data = $hashed->fetch_assoc();
+				if(password_verify($password, $data['pass'])) {
+					return self::CreateFromArray($data);
+				}
+			}
+			
+			return null;
 		}
+		
+		static private function getHashedPassword($password) {
+			$options = array(
+					'cost' => 5,
+					'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
+			);
+		
+			return password_hash($password, PASSWORD_BCRYPT, $options);
+		}
+		
+		
 		
 		//-------------- CRUD --------------------
-		static public function Create() {
-				
+		static public function Create($email,$password) {
+			$columns = array('email', 'pass');
+			$values = array($email, self::getHashedPassword($password));
+			
+			if(($id = parent::Create($columns, $values)) !== null) {
+				return new Admin($id,$email);
+			}
+			
+			return null;
 		}
 		
-		static public function Load($id) {
+		static public function Update($user) {
+			$columns = array('email');
+			$values = array($user->getEmail());
 				
+			return parent::Update($columns,$values, $user->getID());
 		}
 		
-		static public function Update() {
-				
-		}
+		//-------------------- get set -------------------------
+		public function setEmail($new) { $this->email = $new; }
 		
-		static public function Delete($id) {
-				
-		}
+		public function getID() { return $this->id;}
+		public function getEmail() { return $this->email; }
 		
 	}
 ?>

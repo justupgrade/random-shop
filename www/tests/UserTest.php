@@ -1,7 +1,8 @@
 <?php
 	require_once "./classes/DBObject.php";
-	require_once "./classes/User.php";
 	require_once "./classes/Order.php";
+	require_once "./classes/User.php";
+	
 	
 	class UserTest extends PHPUnit_Extensions_Database_TestCase {
 		
@@ -39,7 +40,7 @@
 			$new = User::Create("new", "new email", "aaa");
 			$this->assertNotNull($new);
 			$this->assertEquals(2,$new->getID());
-			$this->assertCount(2,User::GetAllUsers());
+			$this->assertCount(2,User::GetAll());
 		}
 		
 		public function test4() {
@@ -73,6 +74,11 @@
 			$user = User::Create("new username", "user@test.com", "test");
 			$this->assertNotNull($user);
 			$this->assertEquals("new username", $user->getName());
+		}
+		
+		
+		public function test0() {
+			
 		}
 		
 		//protected function getTearDownOperation() {

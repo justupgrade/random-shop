@@ -1,6 +1,7 @@
 <?php
 	require_once "./classes/DBObject.php";
 	require_once "./classes/Order.php";
+	require_once "./classes/Item.php";
 	
 	class OrderTest extends PHPUnit_Extensions_Database_TestCase {
 		

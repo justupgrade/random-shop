@@ -18,45 +18,44 @@
 			$this->categoryID = $categoryID;
 		}
 		
+		static public function CreateFromArray($data){
+			return new Item($data['id'],$data['name'], $data['price'], $data['description'], $data['amount'], $data['category_id']);
+		}
+		
 		//----------- methods -----------------
 		
+		//reset category if category deleted -> CATEGORY 1 MEANS uncategorized
+		public function resetCategory() {
+			$this->categoryID = 1;
+		}
 		
 		//-------------- CRUD --------------------
 		static public function Create($name,$price,$description,$amount,$category) {
 			$columns = array('name', 'price', 'description', 'amount', 'category_id');
 			$values = array($name,$price,$description,$amount,$category);
 			
-			if(($id = parent::Create(self::$table, $columns, $values)) !== null) {
+			if(($id = parent::Create($columns, $values)) !== null) {
 				return new Item($id,$name,$price,$description,$amount,$category);
 			}
 			
 			return null;
 		}
 		
-		static public function Load($id) {
-			$data = parent::Load($id, self::$table);
-			
-			if(($data=$data->fetch_assoc())) return self::CreateFromArray($data);
-			
-			return null;
-		}
 		
-		static private function CreateFromArray($data){
-			return new Item($data['id'],$data['name'], $data['price'], $data['description'], $data['amount'], $data['category_id']);
-		}
-		
-		static public function Update() {
-			
+		//
+		static public function Update($item) {
+			$columns = array('name', 'price', 'description', 'amount', 'category_id');
+			$values = array($item->getName(), $item->getPrice(), $item->getDescription(), $item->getAmount(), $item->getCategoryID());
+				
+			return parent::Update($columns,$values, $item->getID());
 		}
 		
 		static public function Delete($id) {
-			trigger_error("You can not delete item, you bastard!!!");
+			throw new Exception("You can not delete item, you bastard!!!");
 		}
 		
 		//------------------- OTEHR STATIC -------------------
-		static public function GetAllItems() {
-			
-		}
+		
 		
 		
 		// ---------------- get / set ----------------------

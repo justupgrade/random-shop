@@ -12,11 +12,26 @@
 			<directory>./tests</directory>
 			<exclude></exclude>
 		</testsuite>
-		<testsuite name="item">
+		<testsuite name="current">
+			<file>./tests/CategoryTest.php</file>
+		</testsuite>
+		
+		<testsuite name="user_test">
+			<file>./tests/UserTest.php</file>
+		</testsuite>
+		<testsuite name="item_test">
 			<file>./tests/ItemTest.php</file>
 		</testsuite>
-		<testsuite name="picture">
+		<testsuite name="order_test">
+			<file>./tests/OrderTest.php</file>
+		</testsuite>
+		<testsuite name="category_test">
+			<file>./tests/CategoryTest.php</file>
+		</testsuite>
+		<testsuite name="picture_test">
 			<file>./tests/PictureTest.php</file>
 		</testsuite>
+		
+	
 	</testsuites>
 </phpunit>

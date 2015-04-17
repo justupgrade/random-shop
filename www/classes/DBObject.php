@@ -1,5 +1,5 @@
 <?php
-	class DBObject {
+	abstract class DBObject {
 		static protected  $connection = null;
 		
 		static public function SetUpConnection($connection){
@@ -7,17 +7,32 @@
 		}
 		
 		// ----------- static all -------------
+		//required for late static binding!
+		abstract static protected function CreateFromArray($data);
 		
-		static public function GetAll($table){
-			$query = "SELECT * FROM " . $table;
-			return self::$connection->query($query);
+		//USES LATE STATIC BINDING!
+		static public function GetAll(){
+			$query = "SELECT * FROM " . static::$table;
+
+			$data = self::$connection->query($query);
+				
+			if($data) {
+				$results = array();
+				while($row = $data->fetch_assoc()){
+					$results[] = static::CreateFromArray($row);
+				}
+			
+				return $results;
+			}
+				
+			return null;
 		}
 		
 		//-------------- CRUD --------------------
-		static public function Create($table,$columns,$values) {
+		static public function Create($columns,$values) {
 			$length = count($columns);
 			
-			$query = "INSERT into " . $table . " (";
+			$query = "INSERT into " . static::$table . " (";
 			foreach($columns as $colID => $column) {
 				$query .= $column; 
 				if($colID < $length -1 ) $query .= ",";
@@ -44,16 +59,36 @@
 			return (is_string($str)) ? "'".$str."'" : $str;
 		}
 		
-		static public function Load($id,$table) {
-			$query = "SELECT * FROM " . $table . " WHERE id=".$id;
+		static public function Load($id) {
+			$query = "SELECT * FROM " . static::$table . " WHERE id=".$id;
 			
-			return self::$connection->query($query);
+			$data = self::$connection->query($query);
+			if(($data=$data->fetch_assoc())) {
+				return static::CreateFromArray($data);
+			}
+			return null;
 		}
 		
-		static public function Update($table,$columns,$values,$ID) {
+		static protected function LoadArray($id) {
+			$query = "SELECT * FROM " . static::$table . " WHERE id=".$id;
+				
+			$data = self::$connection->query($query);
+				
+			if($data && $data->num_rows > 0) {
+				$result = array();
+				while($row = $data->fetch_assoc()){
+					$result[] = static::CreateFromArray($row);
+				}
+				return $result;
+			}
+				
+			return null;
+		}
+		
+		static public function Update($columns,$values,$ID) {
 			$length = count($columns);
 			
-			$query = "UPDATE " . $table . " SET";
+			$query = "UPDATE " . static::$table . " SET";
 			
 			for($i=0;$i<$length;$i++) {
 				$query .= " " . $columns[$i] . "=" . self::convert($values[$i]);
@@ -64,8 +99,8 @@
 			return self::$connection->query($query);
 		}
 		
-		static public function Delete($id,$table) {
-			$query = "DELETE  FROM " . $table . " WHERE id=" . $id;
+		static public function Delete($id) {
+			$query = "DELETE  FROM " . static::$table . " WHERE id=" . $id;
 			self::$connection->query($query);
 			return mysqli_affected_rows(self::$connection);
 		}

@@ -1,4 +1,5 @@
 <?php
+		
 	class User extends DBObject {
 		private $id;
 		private $name;
@@ -6,6 +7,8 @@
 		private $postal;
 		private $street;
 		private $city;
+		
+		static protected $table = 'users';
 		
 		protected function __construct($id,$username,$email, $surname='', $postal='', $street='', $city='') {
 			$this->id = $id;
@@ -15,6 +18,11 @@
 			$this->postal = $postal;
 			$this->street = $street;
 			$this->city = $city;
+		}
+		
+		//ABSTRACT HAS TO BE IMPLEMENTED
+		static protected function CreateFromArray($data){
+			return new User($data['id'], $data['name'], $data['email'], $data['surname'], $data['postal_code'], $data['street'], $data['city']);
 		}
 		
 		//----------- methods -----------------
@@ -55,11 +63,10 @@
 		
 		//-------------- CRUD --------------------
 		static public function Create($username,$email,$password) {
-			$table = 'users';
 			$columns = array('email', 'name', 'surname', 'password', 'street', 'postal_code', 'city');
 			$values = array($email, $username, '', self::getHashedPassword($password), '', '', '');
 				
-			if(($id = parent::Create($table, $columns, $values)) !== null) {
+			if(($id = parent::Create($columns, $values)) !== null) {
 				return new User($id,$username,$email);
 			}
 				
@@ -75,48 +82,18 @@
 			return password_hash($password, PASSWORD_BCRYPT, $options);
 		}
 		
-		static public function Load($id) {
-			$data = parent::Load($id,'users');
-			
-			if(($data=$data->fetch_assoc())) {
-				return self::CreateFromArray($data);
-			}
-			
-			return null;
-		}
-		
-		static private function CreateFromArray($data){
-			return new User($data['id'], $data['name'], $data['email'], $data['surname'], $data['postal_code'], $data['street'], $data['city']);
-		}
 		
 		static public function Update($user) {
-			$table = 'users';
 			$columns = array('email', 'name', 'surname', 'street', 'postal_code', 'city');
 			$values = array($user->getEmail(), $user->getName(), $user->getSurname(), $user->getStreet(), $user->getPostal(), $user->getCity());
 			
-			return parent::Update($table,$columns,$values, $user->getID());
+			return parent::Update($columns,$values, $user->getID());
 		}
 		
-		static public function Delete($id) {
-			return parent::Delete($id, 'users');
-		}
 		
 
 		//------------------- OTEHR STATIC -------------------
-		static public function GetAllUsers() {
-			$data = parent::GetAll('users');
-			
-			if($data) {
-				$users = array();
-				while($row = $data->fetch_assoc()){
-					$users[] = self::CreateFromArray($row);
-				}
-				
-				return $users;
-			}
-			
-			return null;
-		}
+		
 		
 		// ----------------------- GET / SET
 		public function getName() {

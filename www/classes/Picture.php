@@ -13,6 +13,11 @@
 			$this->path = $path;
 			$this->itemID = $itemID;
 		}
+		
+		static protected function CreateFromArray($data) {
+			return new Picture($data['id'], $data['path'], $data['item_id']);
+		}
+		
 		static public function Create() {
 			trigger_error("CANNOT CREATE PICTURE WITHOUT DATA; CALL Picture::Upload(...)!");
 		}
@@ -22,26 +27,16 @@
 			$columns = array('path', 'item_id');
 			$values = array($path, $itemID);
 			
-			if(($id = parent::Create(self::$table, $columns, $values))) {
+			if(($id = parent::Create($columns, $values))) {
 				return new Picture($id,$path,$itemID);
 			}
 			
 			return null;
 		}
 		
-		//load from db
+		//load from db :: ALL PICTURES FOR SPECYFIED ITEM
 		static public function Load($itemID) {
-			$data = parent::Load($itemID, self::$table);
-			
-			if($data && $data->num_rows > 0) {
-				$pictures = array();
-				while($row = $data->fetch_assoc()){
-					$pictures[] = new Picture($row['id'], $row['path'], $row['item_id']);
-				}
-				return $pictures;
-			}
-			
-			return null;
+			return parent::LoadArray($itemID);
 		}
 		
 		//what to update? picture itself? path to picture?
@@ -54,7 +49,7 @@
 		 * why the ... is this static? super() is static...
 		 * */
 		static public function Delete($picture) {
-			if(parent::Delete($picture->getID(), self::$table) === 1) {
+			if(parent::Delete($picture->getID()) === 1) {
 				//keep directory structure? for now yes...
 				if(unlink($picture->getPath())) return 1;
 			}

@@ -5,13 +5,18 @@
 		private $user_id; //
 		private $date; //
 		
-		private $items; //?
+		static protected $table = 'orders';
 		
 		public function __construct($id,$status,$user_id,$date) {
 			$this->id = $id;
 			$this->status=$status;
 			$this->user_id = $user_id;
 			$this->date = $date;
+		}
+		
+		//ABSTRACT HAS TO BE IMPLEMENTED
+		static protected function CreateFromArray($data){
+			return new Order($data['id'], $data['status'], $data['user_id'], $data['date']);
 		}
 		
 		public function getItems() {
@@ -38,34 +43,17 @@
 			return null;
 		}
 		
-		public function addItem() {
-			
-		}
-		
-		public function deleteItem() {
-			
-		}
-		
-		public function changeAmountOfItems() {
-			
-		}
-		
-		public function getWholePrice() {
-			
-		}
-		
 		//-------------- CRUD --------------------
 		//items : array of items ids?
 		static public function Create($user_id, $items) {
 			$order = null;
-			
+			self::$table = 'orders'; //HAS TO BE UPDATES SO LATE STATIC BINDING IN PARENT CLASS WORKS!
 			$now = date("Y-m-d H:i:s");
-			$table = 'orders';
 			$columns = array('user_id', 'date');
 			$values = array($user_id,$now);
 			
 			//CREATE ORDER IN DB
-			if(($id = parent::Create($table, $columns, $values)) !== null) {
+			if(($id = parent::Create($columns, $values)) !== null) {
 				$order = new Order($id,1,$user_id,$now);
 				
 				//UPDATE ORDERS-ITEMS-DB
@@ -76,20 +64,18 @@
 					else $indexes[$itemID] = 1;
 				}
 				
-				$table = 'orders_items';
+				self::$table = 'orders_items'; //HAS TO BE UPDATES SO LATE STATIC BINDING IN PARENT CLASS WORKS!
 				$columns = array('order_id', 'item_id', 'amount');
 				foreach($indexes as $itemID => $amount) {
 					$values = array($id, $itemID, $amount);
-					parent::Create($table,$columns,$values);
+					parent::Create($columns,$values);
 					//CREATE ITEM OBJECTS HERE?!
 				}
+				
+				self::$table = 'orders'; //HAS TO BE UPDATES SO LATE STATIC BINDING IN PARENT CLASS WORKS!
 			}
 			
 			return $order;
-		}
-		
-		static public function Load($id) {
-				
 		}
 		
 		static public function Update($order) {
@@ -103,10 +89,6 @@
 		
 		//------------------- OTEHR STATIC -------------------
 		static public function GetAllOrdersByStatus($status) {
-		
-		}
-		
-		static public function GetAllOrders() {
 		
 		}
 		

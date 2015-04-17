@@ -20,6 +20,23 @@
 			);
 		}
 		
+		public function test4() {
+			$items = Item::GetAll();
+			$this->assertCount(5,$items);
+		}
+		
+		public function test3() {
+			//test update...
+			$item = Item::Load(1);
+			$item->setName("new name");
+			$this->assertTrue(Item::Update($item));
+			$this->assertEquals($item,Item::Load(1));
+		}
+		
+		/*
+		 * @expectedException              	Exception
+		 * @expectedExceptionMessage 		You can not delete item, you bastard!!!
+		 */ 
 		public function test2() {
 			//delete item-> not possible? -> breaks orders
 			//try to delete item
@@ -27,7 +44,7 @@
 			$error = null;
 			try {
 				$deletion = Item::Delete(1);
-			} catch (Error $err){
+			} catch (Exception $err){
 				$error = true;
 			}
 			
