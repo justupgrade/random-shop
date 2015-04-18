@@ -1,10 +1,10 @@
 <br style='clear: left'>
 <section>
-<p><strong> Item Details: </strong></p>
+<fieldset>
+<legend>Item Details:</legend>
+<div class='margin-top-spacing'>
 <?php 
 	$item = Item::Load($selectedItem);
-	
-	
 	
 	if($user !== null) {
 		echo $item->detailsToHtml();
@@ -20,4 +20,6 @@
 	}
 	
 ?>
+</div>
+</fieldset>
 </section>

@@ -24,7 +24,7 @@
 		<select name='new_product_category'>
 			<option value='<?php echo $category->getID();?>'> <?php echo $category->getName(); ?> </option>
 		</select> <br> <br>
-		<input type='submit' class='input-button' value='Add Product' name='SubmitAddProductBtn'>
+		<input type='submit' class='submit-btn-add' value='Add Product' name='SubmitAddProductBtn'>
 	</form>
 </fieldset>
 <?php } ?>

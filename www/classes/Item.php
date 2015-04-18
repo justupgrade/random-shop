@@ -49,14 +49,14 @@
 			//delete , update
 			$out = "<div>";
 			$out .= "<input type='hidden' name='updating_item_id' value='".$this->id."'>";
-			$out .= "<input type='submit' class='input-button' style='width:200px' name='SubmitUpdateItem' value='Update'>";
+			$out .= "<input type='submit' class='submit-btn-update' name='SubmitUpdateItem' value='Update Product'>";
 			$out .= "</div>";
 			
 			return $out;
 		}
 		
 		public function addButtonHtml() {
-			$out = "<input type='submit' class='input-button' style='width: 200px' value='Add to Cart'>";
+			$out = "<input type='submit' class='submit-btn-add' value='Add to Cart'>";
 			$out .= "<input type='hidden' name='selected_item_id' value='" . $this->id . "'>";
 			return $out;
 		}
