@@ -1,6 +1,12 @@
 @CHARSET "UTF-8";
 @CHARSET "UTF-8";
 
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
 .default-style {
 	background: #333333;
 	color: #DB9B3A;
@@ -56,44 +62,51 @@ nav div.nav-style:active {
 }
 
 #cont2 {
-	clear:left;
-	float:left;
-	width:100%;
-	position:relative;
-	right: 20%;
-	background:#ffa7a7; /* column 2 background colour */
+    background: none repeat scroll 0 0 #ffa7a7;
+    clear: left;
+    float: left;
+    position: relative;
+    right: 20%;
+    width: 100%;
 }
 
 #cont1 {
-	float:left;
-	width: 88%;
-	position:relative;
-	right:46%;
-	background:#fff689; /* column 1 background colour */
+    background: none repeat scroll 0 0 #fff689;
+    float: left;
+    position: relative;
+    right: 60%;
+    width: 100%;
 }
+
 #col1 {
-	padding-top: 10px;
-	float:left;
-	width: 20%;
-	position:relative;
-	left: 77%;
-	overflow:hidden;
+    float: left;
+    left: 80%;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 20%;
 }
+
 #col2 {
-	padding-top: 10px;
-	float:left;
-	width:60%;
-	position:relative;
-	left:82%;
-	overflow:hidden;
+    float: left;
+    left: 80%;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 60%;
 }
+
 #col3 {
-	padding-top: 10px;
-	float:left;
-	width:20%;
-	position:relative;
-	left:87%;
-	overflow:hidden;
+    float: left;
+    left: 80%;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 20%;
+}
+
+fieldset form input {
+    width: 200px;
 }
 
 /*
