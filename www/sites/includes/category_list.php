@@ -20,4 +20,18 @@
 		<input type='submit' class='input-button' value='Add Category' name='SubmitAddCategoryBtn'>
 	</form>
 </fieldset>
+<fieldset style='margin-top: 20px'>
+	<legend>Remove Category</legend>
+	<form method='post' action='../actions/remove_category.php'>
+		<select name='remove_category_id'>
+<?php 
+	foreach($categories as $catIDX => $category) {
+		if($catIDX === 0) continue; //omit category 1 -> 'uncategorized'
+		echo "<option value='".$category->getID()."'>".$category->getName()."</option>";
+	}
+?>
+		</select>
+		<input type='submit' class='input-button' value='Remove Category' name='SubmitRemoveCategoryBtn'>
+	</form>
+</fieldset>
 <?php } ?>
