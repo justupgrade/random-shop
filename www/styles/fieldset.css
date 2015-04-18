@@ -1,0 +1,71 @@
+@CHARSET "UTF-8";
+/* the hacking */
+fieldset {
+    margin: 0px; padding: 0px; display: block; position: relative; width: 100%;
+    %border-top: none !important; /* for IE7, does not work with Webkit */
+    _padding-top: 3em; } /* for IE6 */
+fieldset > * {
+    width: auto;
+    %width: auto !important; /* for IE7 */
+    margin-left: 0.5em; /* emulating fieldset padding-left */
+    margin-left: 0.5em !important; } /* for IE7 */
+fieldset *:first-child + * {
+    /*margin-top: 2.5em; */
+} /* emulating fieldset padding-top */
+fieldset:last-child {
+    margin-bottom: 1em; } /* emulating fieldset pading-bottom */
+legend {
+    width: 100%;
+    %width: 100% !important; /* for IE7 */
+    position: absolute;
+    top: 0px; left: 0px; /* hide the fieldset border */
+    margin: 0px !important; /* suppress all margin rules */
+    line-height: 2em; /* emulating padding-top/bottom */
+    text-indent: 1.5em; /* emulating padding-left */
+    %left: -8px; } /* for IE7 */
+ 
+ 
+/* user format */
+fieldset {
+    font-family: sans-serif;
+    border: 5px solid #1F497D;
+    background: #ddd;
+}
+
+fieldset legend {
+    background: #1F497D;
+    color: #fff;
+    /*padding: 5px 20px ;*/
+    width: 100%;
+}
+
+fieldset, legend {
+   /* border: 1px solid #ddd; */
+    background-color: #eee;
+   /* -moz-border-radius-topleft: 5px;
+    border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-right-radius: 5px;*/
+    }
+legend {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 1em;
+    text-shadow: #fff 1px 1px 1px; 
+    margin-bottom: 2em;
+}
+
+
+fieldset {
+    background-color: #f7f7f7;
+    width: 100%;
+   /* -moz-border-radius-bottomleft: 5px;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-right-radius: 5px; */
+ }
+ 
+ .margin-top-spacing {
+ 	margin-top: 2.5em;
+ }
+

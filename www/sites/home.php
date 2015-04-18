@@ -64,6 +64,9 @@
 <head>
 	<title>Home</title>
 	<style>@import url('../styles/home.css');</style>
+	<style>@import url('../styles/fieldset.css');</style>
+	<style>@import url('../styles/select.css');</style>
+	<style>@import url('../styles/buttons.css');</style>
 </head>
 <body>
 	<section id='page-title-cont' class='default-style'>

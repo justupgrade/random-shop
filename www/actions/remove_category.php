@@ -12,7 +12,7 @@
 	$admin = $_SESSION['admin'];
 	
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
-		if(isset($_POST['SubmitRemoveCategoryBtn'])) {
+		if(isset($_POST['remove_category_id'])) {
 			require_once '../connection.php';
 			DBObject::SetUpConnection($connection);
 			
