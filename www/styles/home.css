@@ -60,48 +60,39 @@ nav div.nav-style:active {
 	float:left;
 	width:100%;
 	position:relative;
-	/*right:33.333%;*/
-	right: 15%;
+	right: 20%;
 	background:#ffa7a7; /* column 2 background colour */
 }
 
 #cont1 {
 	float:left;
-	width:100%;
-	width: 80%;
+	width: 88%;
 	position:relative;
-	right:33.33%;
-	right:40%;
+	right:46%;
 	background:#fff689; /* column 1 background colour */
 }
 #col1 {
 	padding-top: 10px;
 	float:left;
-	width:29.33%;
 	width: 20%;
 	position:relative;
-	left:68.67%;
-	left: 70%;
+	left: 77%;
 	overflow:hidden;
 }
 #col2 {
 	padding-top: 10px;
 	float:left;
-	width:29.33%;
-	width:65%;
+	width:60%;
 	position:relative;
-	left:72.67%;
-	left:80%;
+	left:82%;
 	overflow:hidden;
 }
 #col3 {
 	padding-top: 10px;
 	float:left;
-	width:29.33%;
-	width:15%;
+	width:20%;
 	position:relative;
-	left:76.67%;
-	left:90%;
+	left:87%;
 	overflow:hidden;
 }
 
