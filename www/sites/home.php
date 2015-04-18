@@ -31,6 +31,7 @@
 	}
 	
 	if(isset($_SESSION['category_id'])) $selectedCategory = $_SESSION['category_id'];
+	else $selectedCategory = 1; //'uncategorized'
 	
 	if($_SERVER['REQUEST_METHOD'] === "POST") {
 		if(isset($_POST['ShowLoginForm'])) $showLoginForm = true;

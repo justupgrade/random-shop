@@ -1,4 +1,3 @@
-<?php $category = Category::Load($selectedCategory);?>
 <section>
 <p><strong> <?php echo $category->getName(); ?> </strong> </p>
 <?php

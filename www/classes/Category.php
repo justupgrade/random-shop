@@ -123,6 +123,10 @@
 			return $this->parentID;
 		}
 		
+		public function setParentID($new) {
+			$this->parentID = $new;
+		}
+		
 		public function setName($new) {
 			$this->name = $new;
 		}
