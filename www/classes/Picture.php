@@ -82,7 +82,7 @@
 			$hashed_name = md5($name);
 			$begining = substr($hashed_name, 0, 2);
 			$ending = substr($hashed_name, strlen($hashed_name)-2, 2);
-			$structure = './uploads/' . $item->getCategoryID() . '/';
+			$structure = $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $item->getCategoryID() . '/';
 			$structure .= date("Y") . '/' . date("m") . '/' . date("d") . '/';
 			$structure .= $begining.$ending . '/';
 			

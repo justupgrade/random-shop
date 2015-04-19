@@ -70,7 +70,7 @@
 		}
 		
 		static protected function LoadArray($id) {
-			$query = "SELECT * FROM " . static::$table . " WHERE id=".$id;
+			$query = "SELECT * FROM " . static::$table . " WHERE item_id=".$id;
 				
 			$data = self::$connection->query($query);
 				

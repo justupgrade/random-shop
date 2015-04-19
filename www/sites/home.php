@@ -70,6 +70,7 @@
 	<style>@import url('../styles/fieldset.css');</style>
 	<style>@import url('../styles/select.css');</style>
 	<style>@import url('../styles/buttons.css');</style>
+	<script src='http://code.jquery.com/jquery-2.1.3.js'></script> <!-- jQuery for drag and drop (photos) -->
 </head>
 <body>
 	<section id='page-title-cont' class='default-style'>

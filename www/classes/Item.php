@@ -48,7 +48,7 @@
 		public function getAdminOptions() {
 			//delete , update
 			$out = "<div>";
-			$out .= "<input type='hidden' name='updating_item_id' value='".$this->id."'>";
+			$out .= "<input type='hidden' id='updating_item_id' name='updating_item_id' value='".$this->id."'>";
 			$out .= "<input type='submit' class='submit-btn-update' name='SubmitUpdateItem' value='Update Product'>";
 			$out .= "</div>";
 			
