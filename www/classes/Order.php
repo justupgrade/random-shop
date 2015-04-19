@@ -88,11 +88,29 @@
 		
 		
 		//------------------- OTEHR STATIC -------------------
-		static public function GetAllOrdersByStatus($status) {
-		
+		static public function GetStatusCount($status) {
+			return self::$connection->query("SELECT COUNT(*) FROM " . static::$table . " WHERE status=" . $status)->fetch_row()[0];
+		}
+	
+		static public function GetAllOrdersByStatus($status, $position, $limit) {
+			$query = "SELECT * FROM orders WHERE status=".$status." LIMIT ";
+			$query .= $position . ", " . $limit;
+			$result = self::$connection->query($query);
+			
+			if($result && $result->num_rows > 0) {
+				$orders = array();
+				while($row = $result->fetch_assoc()){
+					$orders[] = self::CreateFromArray($row);
+				}
+				
+				return $orders;
+			}
+			
+			return null;
 		}
 		
 		public function getID() { return $this->id; }
+		public function getUserID() { return $this->user_id; }
 		public function getStatus() { return $this->status; }
 		public function getDate() { return $this->date; }
 		public function setStatus($new) { return $this->status = $new; }

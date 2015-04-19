@@ -11,6 +11,7 @@
 	$admin = null;
 	$user = null;
 	$cart = null;
+	$selectedCategory = null;
 	
 	if(isset($_SESSION['admin'])) {
 		$admin = $_SESSION['admin'];
@@ -25,6 +26,12 @@
 			$_SESSION['cart'] = $cart;
 		}
 	}
+	
+	if(isset($_SESSION['category_id'])) $selectedCategory = $_SESSION['category_id'];
+	else{
+		$selectedCategory = 1; //'uncategorized'
+		$_SESSION['category_id'] = $selectedCategory;
+	}
 ?>	
 	
 <!DOCTYPE html>
@@ -32,6 +39,9 @@
 <head>
 	<title>About</title>
 	<style>@import url('../styles/home.css');</style>
+	<style>@import url('../styles/fieldset.css');</style>
+	<style>@import url('../styles/select.css');</style>
+	<style>@import url('../styles/buttons.css');</style>
 </head>
 <body>
 	<section id='page-title-cont' class='default-style'>
@@ -53,25 +63,14 @@
 			<div id='cont1'>
 				<div id='col1'>
 				<!-- LIST OF SOMETHING -->
-					list
+<?php include_once './includes/category_list.php'; ?>
 				</div>
 				
 				<div id='col2'>
 				<div> Main Page </div>
 			</div>
 				<div id='col3'>	
-					<div>
-<?php 
-	if($user === null && $admin === null){
-		include_once './includes/loginbutton.php'; 
-		include_once './includes/create_account_btn.php';
-	}
-	else{
-		include_once './includes/logoutbutton.php';
-		if($admin === null) include_once './includes/small_cart.php';
-	}
-?>
-					</div>
+<?php include_once './columns/options.php';?>
 				</div>
 			</div>
 		</div>

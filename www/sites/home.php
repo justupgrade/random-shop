@@ -31,7 +31,10 @@
 	}
 	
 	if(isset($_SESSION['category_id'])) $selectedCategory = $_SESSION['category_id'];
-	else $selectedCategory = 1; //'uncategorized'
+	else{
+		$selectedCategory = 1; //'uncategorized'
+		$_SESSION['category_id'] = $selectedCategory;
+	}
 	
 	if($_SERVER['REQUEST_METHOD'] === "POST") {
 		if(isset($_POST['ShowLoginForm'])) $showLoginForm = true;
@@ -92,7 +95,6 @@
 				</div>
 				
 				<div id='col2'>
-				<div> Main Page </div>
 <?php 
 	if(isset($showConfirm) && $showConfirm) include_once './includes/confirm.php';
 	else if(isset($showCart) && $showCart) include_once './includes/cart.php';
@@ -106,18 +108,7 @@
 ?>
 				</div>
 				<div id='col3'>	
-					<div>
-<?php 
-	if($user === null && $admin === null){
-		include_once './includes/loginbutton.php'; 
-		include_once './includes/create_account_btn.php';
-	}
-	else{
-		include_once './includes/logoutbutton.php';
-		if($admin === null) include_once './includes/small_cart.php';
-	}
-?>
-					</div>
+<?php include_once './columns/options.php';?>
 				</div>
 			</div>
 		</div>

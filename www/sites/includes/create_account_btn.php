@@ -1,3 +1,3 @@
-<form method='post'>
-	<input type='submit' class='input-button' name='SubmitCreateAccountBtn' value='Create Account'>
+<form method='post' action='home.php'>
+	<input type='submit' class='submit-btn-add' name='SubmitCreateAccountBtn' value='Create Account'>
 </form>

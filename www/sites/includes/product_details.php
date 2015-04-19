@@ -1,4 +1,3 @@
-<br style='clear: left'>
 <section>
 <fieldset>
 <legend>Item Details:</legend>

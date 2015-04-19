@@ -1,3 +1,3 @@
-<form method='post'>
-	<input class='input-button' name='ShowLoginForm' type='submit' value='Login'>
+<form method='post' action='home.php'>
+	<input class='submit-btn-update' name='ShowLoginForm' type='submit' value='Login'>
 </form>

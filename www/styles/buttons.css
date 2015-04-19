@@ -1,5 +1,40 @@
 @CHARSET "UTF-8";
 
+a {
+	text-decoration: none;
+}
+
+.category-input {
+	display: block;
+	width: 100%;
+	padding: 5px;
+	border: none;
+	margin-left: -4px;
+	margin-bottom: 5px; 
+	background: #d8d8d8;
+}
+
+.selected-category {
+	background: #3AB3DB;
+	color: #155CC6;
+}
+
+.item-input {
+	display: block;
+	padding: 5px;
+	border: none;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	width: 30%;
+	height: 100px;
+	float: left;
+	background-color: #bfdbe9;
+}
+
+.item-input:hover {
+	background-color: #6ca7c4;
+}
+
 .submit-btn-update {
 	display: block;
 	width: 100%;

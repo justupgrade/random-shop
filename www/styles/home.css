@@ -7,6 +7,13 @@
 	box-sizing: border-box;
 }
 
+.photo-upload-container {
+	border: 1px solid black;
+	width: 300px;
+	height: 200px;
+	color: gray;
+}
+
 .default-style {
 	background: #333333;
 	color: #DB9B3A;
@@ -57,12 +64,12 @@ nav div.nav-style:active {
 	float:left;
 	width:100%;
 	overflow:hidden;
-	background:#89ffa2; /* column 3 background colour */
+	/*background:#89ffa2;  column 3 background colour */
 	margin-bottom: 5px;
 }
 
 #cont2 {
-    background: none repeat scroll 0 0 #ffa7a7;
+    /*background: none repeat scroll 0 0 #ffa7a7;*/
     clear: left;
     float: left;
     position: relative;
@@ -71,7 +78,7 @@ nav div.nav-style:active {
 }
 
 #cont1 {
-    background: none repeat scroll 0 0 #fff689;
+      /*background: none repeat scroll 0 0 #fff689;*/
     float: left;
     position: relative;
     right: 60%;
@@ -115,16 +122,7 @@ fieldset form input {
 SUBMIT BUTTONS
 */
 
-.item-input {
-	display: block;
-	padding: 5px;
-	border: none;
-	margin-left: 5px;
-	margin-bottom: 5px;
-	width: 30%;
-	height: 100px;
-	float: left;
-}
+
 
 .input-button {
 	display: block;
@@ -161,14 +159,7 @@ SUBMIT BUTTONS
 CATEGORY LIST
 */
 
-.category-input {
-	display: block;
-	width: 100%;
-	padding: 5px;
-	border: none;
-	margin-left: 5px;
-	margin-bottom: 5px; 
-}
+
 
 .category-input:hover {
 	color: white;
@@ -180,10 +171,7 @@ CATEGORY LIST
 	background: white;
 }
 
-.selected-category {
-	background: #3AB3DB;
-	color: #155CC6;
-}
+
 /*
 	footer
 */

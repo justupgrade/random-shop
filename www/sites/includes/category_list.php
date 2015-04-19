@@ -1,15 +1,19 @@
 <?php $category = Category::Load($selectedCategory);?>
+<fieldset>
+<legend>Categories</legend>
+<div class='margin-top-spacing'>
 <?php 
 	$categories = Category::GetAll();
 	Category::SetCurrentCategory($selectedCategory);
 	foreach($categories as $cat) {
-		echo "<form method='POST'>";
+		echo "<form method='POST' action='home.php'>";
 		echo $cat->toInputHtml();
 		echo "</form>";
 	}
-	
-	if($admin !== null) { //add category form
 ?>
+</div>
+</fieldset>
+<?php if($admin !== null) { //add category form ?>
 <fieldset style='margin-top: 5px'>
 	<legend>Update Category</legend>
 	<form class='margin-top-spacing' method='post' action='../actions/update_category.php'>
@@ -47,14 +51,14 @@
 		</div>
 		<div id='select-and-remove'>
 			<select id='remove-category-select' name='remove_category_id'>
-<?php 
-	foreach($categories as $catIDX => $cat) {
-		$selected = "";
-		if($cat->getID() === $selectedCategory) $selected = "selected";
-		if($catIDX === 0) continue; //omit category 1 -> 'uncategorized'
-		echo "<option $selected value='".$cat->getID()."'>".$cat->getName()."</option>";
-	}
-?>
+	<?php 
+		foreach($categories as $catIDX => $cat) {
+			$selected = "";
+			if($cat->getID() === $selectedCategory) $selected = "selected";
+			if($catIDX === 0) continue; //omit category 1 -> 'uncategorized'
+			echo "<option $selected value='".$cat->getID()."'>".$cat->getName()."</option>";
+		}
+	?>
 			</select>
 		
 		<input type='submit' id='btn-remove-category' class='sumbit-btn-remove' value='Remove' name='SubmitRemoveCategoryBtn'>

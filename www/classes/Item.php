@@ -36,7 +36,7 @@
 		}
 		
 		public function getAdminDetails() {
-			$out = "<div>";
+			$out = "<div class='margin-top-spacing'>";
 			$out .= "Name: <input type='text' name='new_name' value='"  . $this->name . "'><br>";
 			$out .= "Description: <input type='text' name='new_description' value='" . $this->description . "'><br>";
 			$out .= "Price: <input type='text' name='new_price' value='" . $this->price . "'><br>";
