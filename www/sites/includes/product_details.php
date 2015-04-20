@@ -25,6 +25,7 @@
 		echo $item->getAdminDetails();
 		echo $item->getAdminOptions();
 	} else {
+		displayPictures($pictures);
 		echo $item->detailsToHtml();
 	}
 	
