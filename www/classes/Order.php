@@ -115,6 +115,15 @@
 		public function getDate() { return $this->date; }
 		public function setStatus($new) { return $this->status = $new; }
 		
-		
+		public function getStatusToStr(){
+            $status = '';
+            switch($this->status){
+                case 1: $status = 'Confirmed'; break;
+                case 2: $status = 'Paid'; break;
+                case 3: $status = 'Processed'; break;
+            }
+
+            return $status;
+        }
 	}
 ?>

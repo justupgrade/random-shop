@@ -74,6 +74,7 @@
 	if(removeCategoryBtn){ //that means admin's here!
 		 removeCategoryBtn.addEventListener('click', onRemoveCategoryClick);
 		 document.querySelector('.btn-back .yes').addEventListener('click', onYesClick);
+		 document.querySelector('.btn-back .no').addEventListener('click', onNoClick);
 	}
 
 	function getRemoveCategoryName() {
@@ -93,5 +94,12 @@
 		e.preventDefault();
 		removeConfirmed = true;
 		document.getElementById('remove-category-form').submit();
+	}
+
+	function onNoClick(e) {
+		e.preventDefault();
+		removeConfirmed = false;
+		document.getElementById('select-and-remove').style.display = 'block';
+		document.getElementById('confirm-category-removal').style.display = 'none';
 	}
 </script>

@@ -42,6 +42,7 @@
 	<style>@import url('../styles/fieldset.css');</style>
 	<style>@import url('../styles/select.css');</style>
 	<style>@import url('../styles/buttons.css');</style>
+    <style>@import url('../styles/table.css');</style>
 </head>
 <body>
 	<section id='page-title-cont' class='default-style'>
@@ -67,7 +68,10 @@
 				</div>
 				
 				<div id='col2'>
-<?php if($admin !== null) include_once './columns/admin_account_options.php'; ?>
+<?php
+ if($admin !== null) include_once './columns/admin_account_options.php'; 
+ elseif($user !== null) include_once './columns/user_account_options.php';
+?>
 				</div>
 				<div id='col3'>	
 <?php include_once './columns/options.php';?>
